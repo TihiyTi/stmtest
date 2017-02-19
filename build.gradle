@@ -1,0 +1,30 @@
+group 'com.ti'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = "com.ti.StmTest"
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group:'log4j',name:'log4j',version:'1.2.17'
+    compile group:'org.scream3r',name:'jssc',version:'2.8.0'
+    compile group:'com.google.guava',name:'guava',version:'15.0'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+task fatJar(type: Jar){
+    manifest{
+        attributes "Main-Class": mainClassName
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
