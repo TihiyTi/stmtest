@@ -1,11 +1,15 @@
-package com.ti.data;
+package com.ti.comm;
+
+import com.ti.data.RealTimeQueueCreater;
+import com.ti.data.SignalSender;
+import com.ti.data.TildaProtocolInterface;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SignalWorker implements Runnable{
+public class SignalWorker implements Runnable, TildaProtocolInterface{
     private SignalSender sender;
     private boolean comActive = false;
     public final static int SOURCE_TRIANGE = 0;
@@ -85,5 +89,14 @@ public class SignalWorker implements Runnable{
         array[6] = (byte) 0x0;
         array[7] = (byte) 0x0;
         return array;
+    }
+
+    public void sentData(byte[] array){
+        sender.sendDataArray(array);
+    }
+
+    @Override
+    public void addOutSignalSample(Number sample) {
+        outputQueue.add(sample);
     }
 }
