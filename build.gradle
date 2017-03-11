@@ -8,6 +8,19 @@ compileJava.options.encoding = 'UTF-8'
 
 mainClassName = "com.ti.StmTest"
 
+subprojects{
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+}
+project(':SerialService'){
+    version = '0.1'
+    jar.manifest {
+        attributes 'Created-By': 'Ti'
+        attributes 'Class-Path': 'Ti'
+
+    }
+}
 
 repositories {
     mavenCentral()

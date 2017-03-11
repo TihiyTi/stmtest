@@ -1,4 +1,4 @@
-package com.ti.data;
+package com.ti.comm;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -16,17 +16,20 @@ public class SignalSender {
     private SerialPort port;
     private int count = 0;
 
+    private List<AbstractProtocol> protocolList = new ArrayList<>();
+
+
     public SignalSender() {
         openPort("COM7", SerialPort.BAUDRATE_115200);
     }
 
-    public void linkToQueue(ConcurrentLinkedQueue<Number> queue){
-        this.queue = queue;
-    }
+//    public void linkToQueue(ConcurrentLinkedQueue<Number> queue){
+//        this.queue = queue;
+//    }
 
-    public void linkToMaxQueue(ConcurrentLinkedQueue<Number> outputQueue) {
-        maxQueue = outputQueue;
-    }
+//    public void linkToMaxQueue(ConcurrentLinkedQueue<Number> outputQueue) {
+//        maxQueue = outputQueue;
+//    }
 
     public void openPort(String portName, int speed) {
         port = new SerialPort(portName);
@@ -66,24 +69,11 @@ public class SignalSender {
         }
     }
 
-    class EventListener implements SerialPortEventListener{
-        @Override
-        public void serialEvent(SerialPortEvent event) {
-            if(event.isRXCHAR() && event.getEventValue() > 0) {
-                try {
-                    byte[] buf = port.readBytes();
-                    for (byte element: buf){
-                        queue.add(element);
-                    }
-//                    String receivedData = port.readString(event.getEventValue());
-//                    System.out.println("Received response: " + receivedData);
-                }
-                catch (SerialPortException ex) {
-                    System.out.println("Error in receiving string from COM-port: " + ex);
-                }
-            }
-        }
+    public void setProtocol(AbstractProtocol protocol) {
+        protocolList.add(protocol);
+        protocol.setSender(this);
     }
+
     class SimpleProtocolListener implements SerialPortEventListener{
         private boolean isProtocolCorrect = false;
         private int skipByteCount = 0;
@@ -98,21 +88,26 @@ public class SignalSender {
                     e.printStackTrace();
                 }
                 for (byte element: buf){
-//                    System.out.print(element+"  ");
                     deque.add(element);
                 }
-//                System.out.println();
-                boolean isProtocol = checkProtocol();
-//                System.out.println(isProtocol);
-                if(isProtocol){
-                    while(isCommandReady().size()>0){
-//                        System.out.print("_");
-                    }
+                if(protocolList.get(0).checkProtocol(deque)){
+                    protocolList.forEach(x->{
+                        x.parseQueue(deque);
+                    });
                 }
-//                System.out.println();
+
+//                boolean isProtocol = checkProtocol();
+////                System.out.println(isProtocol);
+//                if(isProtocol){
+//                    while(isCommandReady().size()>0){
+////                        System.out.print("_");
+//                    }
+//                }
+////                System.out.println();
             }
         }
         private boolean checkProtocol(){
+
             if(deque.peek()==(byte)0xAA){
                 isProtocolCorrect = true;
                 return true;

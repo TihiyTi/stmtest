@@ -1,43 +1,47 @@
 package com.ti.data;
 
-import java.io.IOException;
-import java.io.PushbackInputStream;
+import com.ti.comm.AbstractProtocol;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class TildaProtocol {
-    int numOfBytes = 3;
-    byte sinchro = (byte) 0xAA;
+public class TildaProtocol extends AbstractProtocol implements TildaTranciveInterface{
 
-    public void sendFormattedData(PushbackInputStream stream, ConcurrentLinkedQueue queue, String flowName) {
-        Collection<Integer> list = new ArrayList<Integer>();
-        try {
-            int numOfPackage = (stream.available()/numOfBytes);
-            if(numOfPackage > 0){
-                byte[] buf = new byte[numOfPackage*numOfBytes];
-                int n = stream.read(buf);
-                for(int i = 0; i < buf.length; i+=numOfBytes){
-                    if(buf[i]==sinchro){
-                        int value = buf[i+2] + (buf[i+1]<<8);
-                        list.add(value);
-//                        System.out.println(buf[i] + " "+ buf[i + 1] + " "+buf[i+2] + " itogo" + value);
-                    }else {
-                        stream.unread(buf);
-                        Logger.getLogger(getClass().getName()).info("Protocol CRASH");
-                    }
-                }
+    private final int OK = 0;
+    private final int NO = 1;
+    private final byte DATA = (byte)0xa1;
+    private final byte MAX = (byte)0xa2;
+    List<TildaReceiveInterface> contrList = new ArrayList<>();
 
-            }
-        } catch (IOException e) {
-            Logger.getLogger(getClass().getName()).log(Level.FINE, String.format("%s %s", toString(), e.getMessage()), e);
-//            e.printStackTrace();
+    public TildaProtocol() {
+        //todo спорное архитектурное решение прописывать карту размеров через метод в конструкторе
+        Map<Byte, Integer> map = new HashMap<>();
+        map.put(DATA, 6);
+        map.put(MAX, 6);
+        setCommandMap(map);
+    }
+
+    public void addController(TildaReceiveInterface controller){
+        contrList.add(controller);
+//        controller.
+    }
+
+    @Override
+    public void chooseCommand(byte command, byte[] data) {
+        if (command == DATA) {
+            int oneInt = data[0] & 0xFF;
+            int twoInt = data[1] & 0xFF;
+            int threeInt = data[2] & 0xFF;
+            int fourInt = data[3] & 0xFF;
+            int valueInt = (fourInt << 24) + (threeInt << 16) + (twoInt << 8) + (oneInt);
+            contrList.forEach(x -> x.addOutSignalSample(valueInt));
         }
-        if(!list.isEmpty()){
-//            System.out.println(""+list.toString());
-//            manager.getQueue(flowName).addAll(list);
-        }
+    }
+
+    @Override
+    public void setFrequency() {
+
     }
 }

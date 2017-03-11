@@ -60,7 +60,7 @@ public class RealTimeQueueCreater {
         Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                blockingQueue.add(list.get(i));
+                blockingQueue.add(2*list.get(i));
                 if(i > (list.size()-20)){
                     i=0;
                 }else{
