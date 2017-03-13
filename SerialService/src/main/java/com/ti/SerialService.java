@@ -38,7 +38,7 @@ public class SerialService<RESPONSE, REQUEST> {
         protocol.addController(controller);
         controller.addProtocol(protocol);
         listChildrenProtocol.forEach(controller::addProtocol);
-
     }
+
 
 }

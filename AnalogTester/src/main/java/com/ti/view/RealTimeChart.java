@@ -1,4 +1,4 @@
-package com.ti;
+package com.ti.view;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.chart.AreaChart;
@@ -52,6 +52,7 @@ public class RealTimeChart{
     }
 
     private void addDataToSeries() {
+//        System.out.print(" s:"+dataQ.size()+" ");
         for (int i = 0; i < 20; i++) { //-- add 20 numbers to the plot+
             if (dataQ.isEmpty()) break;
             xSeriesData = xSeriesData+1;

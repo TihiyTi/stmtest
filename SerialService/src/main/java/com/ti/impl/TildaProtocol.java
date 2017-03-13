@@ -13,10 +13,10 @@ public class TildaProtocol extends AbstractCommandProtocol<TildaCommandTypes>{
         fillSetOfCommandType(TildaCommandTypes.values());
     }
 
-    static AbstractCommand createCommand(TildaCommandTypes type){
+    public static AbstractCommand createCommand(TildaCommandTypes type){
         return new EmptyCommand<>(type);
     }
-    static AbstractCommand sendDataCommand(int reo, int mio){
+    public static AbstractCommand sendDataCommand(int reo, int mio){
         return new DataCommand<>(TildaCommandTypes.DATA, reo, mio);
     }
 

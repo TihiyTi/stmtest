@@ -23,8 +23,10 @@ public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CheckByHeadBy
 
     @Override
     public AbstractCommand createByteToRequest(ByteBuffer buffer) {
+//        System.out.println("Prepare to create request" + this.toString());
         byte head = buffer.get();
         List<COMMAND_TYPE> list = commandable.stream().filter(x->x.check(head)).collect(Collectors.toList());
-        return list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
+        AbstractCommand command = list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
+        return command;
     }
 }

@@ -38,6 +38,7 @@ public class ComPortWorker {
 //            }
 //        }
     }
+
     public void sendData(Number data){
         try {
             port.writeByte(data.byteValue());

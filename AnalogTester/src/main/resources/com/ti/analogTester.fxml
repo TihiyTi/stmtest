@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="border" prefHeight="202.0" prefWidth="273.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ti.view.AnTeViewController">
+  <center>
+    <VBox fx:id="chartHBox" />
+  </center>
+  <left>
+    <VBox alignment="TOP_CENTER" prefHeight="202.0" prefWidth="157.0">
+      <children>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" text="Button" />
+            <TextField prefWidth="200.0" />
+          </children>
+        </HBox>
+        <Button mnemonicParsing="false" onAction="#changeState" text="EmulateStateChange" />
+      </children>
+    </VBox>
+  </left>
+</BorderPane>

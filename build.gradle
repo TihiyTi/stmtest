@@ -23,13 +23,19 @@ subprojects{
 }
 project(':SerialService'){
     version = '0.1'
-
-
-
     jar.manifest {
         attributes 'Created-By': 'Ti'
         attributes 'Class-Path': 'Ti'
-
+    }
+}
+project(':AnalogTester'){
+    version = '0.1'
+    dependencies{
+        compile project(':SerialService')
+    }
+    jar.manifest {
+        attributes 'Created-By': 'Ti'
+        attributes 'Class-Path': 'Ti'
     }
 }
 

@@ -1,4 +1,5 @@
 rootProject.name = 'stmtest'
 include 'SerialService'
+include 'AnalogTester'
 
 

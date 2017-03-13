@@ -11,6 +11,8 @@ import java.util.List;
 public class TildaController implements SerialControllable<AbstractCommand,AbstractCommand> {
     // TODO: 13.03.2017 судя по всему нет необходимости передавать во все протоколы, так как в методе
     // sendResponse происходит проброс RESPONSE<AbstractCommand> на все протоколы
+    // TODO: 13.03.2017 возможно можно работу с протоколом вынести в abstract метод
+    // (видно на примере TildaController и EmulController)
     List<Protocol<AbstractCommand,AbstractCommand>> list = new ArrayList<>();
 
 
