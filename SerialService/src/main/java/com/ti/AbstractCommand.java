@@ -1,11 +1,10 @@
 package com.ti;
 
-public abstract class AbstractCommand<COMMANDTYPE> implements Requestable, Responsable{
-    COMMANDTYPE command;
+public abstract class AbstractCommand<COMMAND_TYPE> implements Requestable, Responsable{
 
-    public boolean isCommand(COMMANDTYPE commandForCheck){
-        return command.equals(commandForCheck);
+    COMMAND_TYPE type;
+
+    public COMMAND_TYPE is(){
+        return type;
     }
-
-
 }

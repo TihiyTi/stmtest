@@ -11,7 +11,7 @@ public class CommTest {
         TildaController controller = new TildaController();
 
         service.setProtocol(protocol);
-        service.addController((SerialControllable) controller);
+        service.addController(controller);
 
         controller.runTest();
 

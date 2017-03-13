@@ -2,6 +2,7 @@ package com.ti;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -44,6 +45,8 @@ public class CommandSplitter <REQUEST>  implements CommandSplittable<REQUEST> {
             ByteBuffer buffer = ByteBuffer.allocate(commandSize+1);
             buffer.put(command);
             buffer.put(data);
+            System.out.println("Split: " + Arrays.toString(buffer.array()));
+            buffer.rewind();
             protocol.upByteBuffer(buffer);
         }else{
             for(int i = bufferByteList.size()-1; i > -1; i--){
