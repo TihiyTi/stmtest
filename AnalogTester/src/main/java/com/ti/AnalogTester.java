@@ -28,7 +28,7 @@ public class AnalogTester extends Application{
         MainAnTeController mainController = new MainAnTeController();
         mainController.setViewController(viewController);
         viewController.setControllable(mainController);
-//        mainController.runEmulation();
+        mainController.runEmulation();
 
     }
     @Override

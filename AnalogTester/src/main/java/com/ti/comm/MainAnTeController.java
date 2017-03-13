@@ -42,7 +42,7 @@ public class MainAnTeController implements AnTeControllable{
 
     @Override
     public void reopenPort(String name, int rate) {
-
+        service.reopenPort(name,rate);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ComPortWorker {
     private AbstractProtocol protocol;
 
     public ComPortWorker() {
-        openPort("COM7", SerialPort.BAUDRATE_115200);
+        openPort("COM5", SerialPort.BAUDRATE_115200);
     }
 
     public void openPort(String portName, int speed) {
@@ -38,6 +38,15 @@ public class ComPortWorker {
 //            }
 //        }
     }
+    public void reopenPort(String portName){
+        try {
+            System.out.println("Close port");
+            port.closePort();
+            openPort(portName, SerialPort.BAUDRATE_115200);
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void sendData(Number data){
         try {
@@ -48,10 +57,15 @@ public class ComPortWorker {
     }
 
     public void sendDataArray(ByteBuffer buffer){
-        try {
-            port.writeBytes(buffer.array());
-        } catch (SerialPortException e) {
-            e.printStackTrace();
+        if(port.isOpened()){
+            try {
+                port.writeBytes(buffer.array());
+            } catch (SerialPortException e) {
+                e.printStackTrace();
+            }
+        }else{
+            // TODO: 13.03.2017 добавить логирования события
+            System.out.println("Port NO open. Data don't send.");
         }
     }
 

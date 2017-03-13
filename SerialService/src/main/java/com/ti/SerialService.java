@@ -9,24 +9,13 @@ public class SerialService<RESPONSE, REQUEST> {
     private AbstractProtocol<RESPONSE, REQUEST> protocol;
     private List<AbstractProtocol<RESPONSE, REQUEST>> listChildrenProtocol = new ArrayList<>();
 
-//    public void initService(SerialControllable<RESPONSE,REQUEST> controller,
-//                            AbstractProtocol<RESPONSE, REQUEST> mainProtocol,
-//                            AbstractProtocol<RESPONSE, REQUEST> ... childrenProtocols){
-//        protocol = mainProtocol;
-//        protocol.addController(controller);
-//
-//        Arrays.asList(childrenProtocols).forEach(x->{
-//            x.addController(controller);
-//            controller.addProtocol(x);
-//        });
-//    }
-
     public void setProtocol(AbstractProtocol<RESPONSE, REQUEST> mainProtocol){
         protocol = mainProtocol;
 
         protocol.setSender(comPort);
         comPort.setProtocol(protocol);
     }
+
     @SafeVarargs
     public final void addChildrenProtocol(AbstractProtocol<RESPONSE, REQUEST>... childrenProtocols){
         //todo добавить логирование, если "детские" протоколы добавлены первыми
@@ -40,5 +29,9 @@ public class SerialService<RESPONSE, REQUEST> {
         listChildrenProtocol.forEach(controller::addProtocol);
     }
 
+    // TODO: 13.03.2017 метод добавлен для AnalogTester, возможно стоит переписать архитектурно более правильно
+    public void reopenPort(String port, int rate){
+        comPort.reopenPort(port);
+    }
 
 }
