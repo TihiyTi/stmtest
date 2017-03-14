@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AnalogTester/AnalogTester.iml" filepath="$PROJECT_DIR$/AnalogTester/AnalogTester.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SerialService/SerialService.iml" filepath="$PROJECT_DIR$/SerialService/SerialService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/stmtest.iml" filepath="$PROJECT_DIR$/stmtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester.iml" filepath="$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester.iml" group="AnalogTester" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester_main.iml" filepath="$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester_main.iml" group="AnalogTester" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester_test.iml" filepath="$PROJECT_DIR$/.idea/modules/AnalogTester/AnalogTester_test.iml" group="AnalogTester" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService.iml" group="SerialService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService_main.iml" group="SerialService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService_test.iml" group="SerialService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest_main.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest_main.iml" group="stmtest" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest_test.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest_test.iml" group="stmtest" />
     </modules>
   </component>
 </project>
