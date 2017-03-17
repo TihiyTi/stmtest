@@ -11,5 +11,15 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="AnalogTester_main" target="1.8" />
+      <module name="AnalogTester_test" target="1.8" />
+      <module name="SerialService_main" target="1.8" />
+      <module name="SerialService_test" target="1.8" />
+      <module name="stmtest_main" target="1.8" />
+      <module name="stmtest_test" target="1.8" />
+      <module name="TildaService_main" target="1.8" />
+      <module name="TildaService_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

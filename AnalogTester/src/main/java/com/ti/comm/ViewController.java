@@ -1,4 +1,4 @@
-package com.ti.view;
+package com.ti.comm;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

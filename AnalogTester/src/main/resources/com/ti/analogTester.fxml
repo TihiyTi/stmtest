@@ -21,4 +21,7 @@
       </padding>
     </VBox>
   </left>
+  <bottom>
+    <fx:include fx:id="chartmc1" source="ControlPanel.fxml"/>
+  </bottom>
 </BorderPane>

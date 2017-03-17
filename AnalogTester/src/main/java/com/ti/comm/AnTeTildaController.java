@@ -1,8 +1,8 @@
 package com.ti.comm;
 
-import com.ti.AbstractCommand;
+import com.ti.command.AbstractCommand;
 import com.ti.AnalogSignalManager;
-import com.ti.DataCommand;
+import com.ti.impl.command.DataCommand;
 import com.ti.impl.TildaCommandTypes;
 import com.ti.impl.TildaController;
 

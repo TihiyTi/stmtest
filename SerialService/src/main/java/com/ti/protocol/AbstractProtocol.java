@@ -1,4 +1,6 @@
-package com.ti;
+package com.ti.protocol;
+
+import com.ti.SerialControllable;
 
 import java.nio.ByteBuffer;
 import java.util.*;
@@ -17,16 +19,16 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
     public void setCommandMap(Map<Byte,Integer> map) {
         commandSplitter.setCommandSizeMap(map);
     }
-    void addController(SerialControllable<RESPONSE, REQUEST> controller){
+    public void addController(SerialControllable<RESPONSE, REQUEST> controller){
         serialControllableList.add(controller);
     }
-    void addProtocol(AbstractProtocol<RESPONSE, REQUEST> protocol){
+    public void addProtocol(AbstractProtocol<RESPONSE, REQUEST> protocol){
         protocolList.add(protocol);
         protocol.setSender(sender);
     }
 
     //Receive methods
-    boolean checkProtocol(ConcurrentLinkedDeque<Byte> deque){
+    public boolean checkProtocol(ConcurrentLinkedDeque<Byte> deque){
         return protocolChecker.checkProtocol(deque);
     }
     void parseQueue(ConcurrentLinkedDeque<Byte> deque){
@@ -39,7 +41,7 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
     }
 
     //Transceiver method
-    void setSender(ComPortWorker sender){
+    public void setSender(ComPortWorker sender){
         this.sender = sender;
     }
     @Override

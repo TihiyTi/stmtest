@@ -1,6 +1,6 @@
 package com.ti.comm;
 
-import com.ti.AbstractCommand;
+import com.ti.command.AbstractCommand;
 import com.ti.AnalogSignalManager;
 import com.ti.SerialService;
 import com.ti.impl.TildaController;

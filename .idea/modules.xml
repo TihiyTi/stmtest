@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService.iml" group="SerialService" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService_main.iml" group="SerialService" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SerialService/SerialService_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SerialService/SerialService_test.iml" group="SerialService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TildaService/TildaService.iml" filepath="$PROJECT_DIR$/.idea/modules/TildaService/TildaService.iml" group="TildaService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TildaService/TildaService_main.iml" filepath="$PROJECT_DIR$/.idea/modules/TildaService/TildaService_main.iml" group="TildaService" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TildaService/TildaService_test.iml" filepath="$PROJECT_DIR$/.idea/modules/TildaService/TildaService_test.iml" group="TildaService" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest_main.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest_main.iml" group="stmtest" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stmtest_test.iml" filepath="$PROJECT_DIR$/.idea/modules/stmtest_test.iml" group="stmtest" />

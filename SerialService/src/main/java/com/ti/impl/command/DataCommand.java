@@ -1,4 +1,7 @@
-package com.ti;
+package com.ti.impl.command;
+
+import com.ti.command.AbstractCommand;
+import com.ti.CheckByHeadByte;
 
 import java.nio.ByteBuffer;
 

@@ -1,4 +1,7 @@
-package com.ti;
+package com.ti.protocol;
+
+import com.ti.command.AbstractCommand;
+import com.ti.CheckByHeadByte;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -25,6 +28,7 @@ public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CheckByHeadBy
     public AbstractCommand createByteToRequest(ByteBuffer buffer) {
 //        System.out.println("Prepare to create request" + this.toString());
         byte head = buffer.get();
+        // TODO: 17.03.2017 Можно сделать разделение по командам IN и OUT 
         List<COMMAND_TYPE> list = commandable.stream().filter(x->x.check(head)).collect(Collectors.toList());
         AbstractCommand command = list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
         return command;

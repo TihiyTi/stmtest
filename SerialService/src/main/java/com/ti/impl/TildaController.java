@@ -1,8 +1,8 @@
 package com.ti.impl;
 
-import com.ti.AbstractCommand;
-import com.ti.DataCommand;
-import com.ti.Protocol;
+import com.ti.command.AbstractCommand;
+import com.ti.impl.command.DataCommand;
+import com.ti.protocol.Protocol;
 import com.ti.SerialControllable;
 
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ public class TildaController implements SerialControllable<AbstractCommand,Abstr
             int mio = ((DataCommand)command).getMio();
             System.out.println("DATA reo: "+ reo + " mio: " + mio);
         }
-
     }
 
     @Override
@@ -43,5 +42,6 @@ public class TildaController implements SerialControllable<AbstractCommand,Abstr
         toServiceResponse(TildaProtocol.createCommand(TildaCommandTypes.OK));
         toServiceResponse(TildaProtocol.createCommand(TildaCommandTypes.NO));
         toServiceResponse(TildaProtocol.sendDataCommand(123,345));
+
     }
 }

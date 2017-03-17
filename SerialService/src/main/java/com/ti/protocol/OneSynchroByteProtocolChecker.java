@@ -1,4 +1,4 @@
-package com.ti;
+package com.ti.protocol;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 

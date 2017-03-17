@@ -1,8 +1,8 @@
-package com.ti;
+package com.ti.command;
 
 public abstract class AbstractCommand<COMMAND_TYPE> implements Requestable, Responsable{
 
-    COMMAND_TYPE type;
+    protected COMMAND_TYPE type;
 
     public COMMAND_TYPE is(){
         return type;

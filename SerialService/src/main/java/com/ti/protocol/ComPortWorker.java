@@ -1,5 +1,6 @@
-package com.ti;
+package com.ti.protocol;
 
+import com.ti.protocol.AbstractProtocol;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;

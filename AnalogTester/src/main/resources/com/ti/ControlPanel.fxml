@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ti.comm.ViewController">
+  <left>
+    <!--<fx:include fx:id="chartmc1" source="charttest/chart.fxml"/>-->
+  </left>
+  <padding>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+  </padding>
+  <right>
+    <!--<fx:include fx:id="chartmc2" source="charttest/chart.fxml"/>-->
+  </right>
+  <top>
+    <VBox spacing="20.0">
+      <HBox alignment="CENTER">
+        <ToggleButton onAction="#freq08action" text="Frequency 0.8">
+          <toggleGroup>
+            <ToggleGroup fx:id="freqgroup" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton onAction="#freq10action" text="Frequency 1" toggleGroup="$freqgroup" />
+        <ToggleButton onAction="#freq12action" text="Frequency 1.2" toggleGroup="$freqgroup" />
+        <ToggleButton onAction="#freq25action" text="Frequency 2.5" toggleGroup="$freqgroup" />
+        <ToggleButton onAction="#freq120action" text="Frequency 12" toggleGroup="$freqgroup" />
+      </HBox>
+      <HBox alignment="CENTER">
+        <ToggleButton onAction="#ampl25" text="Amplitude 25%">
+          <toggleGroup>
+            <ToggleGroup fx:id="amplgroup" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton onAction="#ampl50" text="Amplitude 50%" toggleGroup="$amplgroup" />
+        <ToggleButton onAction="#ampl75" text="Amplitude 75%" toggleGroup="$amplgroup" />
+        <ToggleButton onAction="#ampl100" text="Amplitude 100%" toggleGroup="$amplgroup" />
+      </HBox>
+      <HBox alignment="CENTER">
+        <ToggleButton onAction="#form1" text="Form 1">
+          <toggleGroup>
+            <ToggleGroup fx:id="formgroup" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton onAction="#form2" text="Form 2" toggleGroup="$formgroup" />
+        <ToggleButton onAction="#form3" text="Form 3" toggleGroup="$formgroup" />
+        <ToggleButton onAction="#form4" text="Form4" toggleGroup="$formgroup" />
+      </HBox>
+      <HBox alignment="CENTER">
+        <ToggleButton onAction="#min10" text="10 minute">
+          <toggleGroup>
+            <ToggleGroup fx:id="timergroup" />
+          </toggleGroup>
+        </ToggleButton>
+        <ToggleButton onAction="#min20" text="20 minute" toggleGroup="$timergroup" />
+        <ToggleButton onAction="#min30" text="30 minute" toggleGroup="$timergroup" />
+        <ToggleButton onAction="#min40" text="40 minute" toggleGroup="$timergroup" />
+      </HBox>
+      <HBox alignment="CENTER" VBox.margin="$x2">
+        <Button onAction="#run" prefHeight="31.0" prefWidth="64.0" text="Run" textAlignment="LEFT" textFill="BLACK" wrapText="false">
+          <HBox.margin>
+            <Insets left="10.0" right="10.0" fx:id="x1" />
+          </HBox.margin>
+        </Button>
+        <Button onAction="#stop" prefHeight="32.0" prefWidth="68.0" text="Stop" HBox.margin="$x1" />
+        <padding>
+          <Insets fx:id="x2" />
+        </padding>
+      </HBox>
+      <padding>
+        <Insets bottom="10.0" top="10.0" />
+      </padding>
+    </VBox>
+  </top>
+</BorderPane>

@@ -1,4 +1,4 @@
-package com.ti;
+package com.ti.protocol;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

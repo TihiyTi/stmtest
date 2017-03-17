@@ -1,5 +1,8 @@
 package com.ti;
 
+import com.ti.protocol.ComPortWorker;
+import com.ti.protocol.AbstractProtocol;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

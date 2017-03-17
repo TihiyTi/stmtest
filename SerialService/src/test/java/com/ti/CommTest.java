@@ -1,5 +1,6 @@
 package com.ti;
 
+import com.ti.command.AbstractCommand;
 import com.ti.impl.TildaController;
 import com.ti.impl.TildaProtocol;
 

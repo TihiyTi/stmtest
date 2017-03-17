@@ -1,4 +1,4 @@
-package com.ti;
+package com.ti.command;
 
 import java.nio.ByteBuffer;
 

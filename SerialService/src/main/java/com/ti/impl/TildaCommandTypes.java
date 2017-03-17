@@ -1,55 +1,53 @@
 package com.ti.impl;
 
-import com.ti.AbstractCommand;
+import com.ti.command.AbstractCommand;
 import com.ti.CheckByHeadByte;
-import com.ti.DataCommand;
-import com.ti.EmptyCommand;
+import com.ti.impl.command.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum TildaCommandTypes implements CheckByHeadByte {
-    OK((byte)0x00){
-        @Override
-        public AbstractCommand getCommand(){
-            return new EmptyCommand<>(this);
-        }
-    },
-    NO((byte)0x01){
-        @Override
-        public AbstractCommand getCommand(){
-            return new EmptyCommand<>(this);
-        }
-    },
-    DATA((byte)0x02){
+    OK((byte)0x00, Direction.REQUEST),
+    NO((byte)0x01, Direction.REQUEST),
+    DATA((byte)0x02, Direction.REQUEST){
         @Override
         public AbstractCommand getCommand(){
             return new DataCommand<>(this);
         }
     },
-    STATE((byte)0x03){
+    STATE((byte)0x03, Direction.REQUEST),
+    MAX_INDEX((byte)0x04, Direction.REQUEST),
+    MIN_INDEX((byte)0x05, Direction.REQUEST),
+
+    WAIT_SYNC((byte)0x00, Direction.RESPONSE),
+    FREQ_SET((byte)0x01, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){
-            return new EmptyCommand<>(this);
-        }
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this);}
     },
-    MAX_INDEX((byte)0x04){
+    FORM_SET((byte)0x02, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){
-            return new EmptyCommand<>(this);
-        }
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Form>(this);}
     },
-    MIN_INDEX((byte)0x05){
+    AMPL_SET((byte)0x03, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){
-            return new EmptyCommand<>(this);
-        }
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Amplitude>(this);}
+    },
+    STATE_SET((byte)0x04, Direction.RESPONSE){
+        @Override
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,State>(this);}
     };
 
     byte syncByte;
 
-    TildaCommandTypes(byte syncByte){ this.syncByte = syncByte;}
+    TildaCommandTypes(byte syncByte, Direction direction){ this.syncByte = syncByte;}
+
+    // Default overriding for typical command
+    @Override
+    public AbstractCommand getCommand(){
+        return new EmptyCommand<>(this);
+    }
 
     @Override
     public boolean check(byte syncByte){

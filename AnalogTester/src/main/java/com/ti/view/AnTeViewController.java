@@ -15,6 +15,7 @@ public class AnTeViewController implements Initializable {
     public VBox chartHBox;
     public BorderPane border;
     public TextField portname;
+    public BorderPane chartmc1;
     RealTimeChart realTimeChart = new RealTimeChart();
     RealTimeChart realTimeChart2 = new RealTimeChart();
 

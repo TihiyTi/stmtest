@@ -30,6 +30,9 @@ project(':SerialService'){
         attributes 'Class-Path': 'Ti'
     }
 }
+project(':TildaService'){
+    version = '0.1'
+}
 project(':AnalogTester'){
     apply plugin: 'application'
     mainClassName = "com.ti.AnalogTester"

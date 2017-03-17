@@ -1,4 +1,4 @@
-package com.ti;
+package com.ti.protocol;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -18,7 +18,7 @@ public class IntFlowProtocol extends AbstractProtocol<Integer,Integer>{
     }
 
     @Override
-    boolean checkProtocol(ConcurrentLinkedDeque<Byte> deque){
+    public boolean checkProtocol(ConcurrentLinkedDeque<Byte> deque){
         return true;
     }
     @Override
