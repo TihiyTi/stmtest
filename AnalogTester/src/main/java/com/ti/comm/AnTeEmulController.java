@@ -1,7 +1,7 @@
 package com.ti.comm;
 
 import com.ti.AbstractEmulController;
-import com.ti.impl.TildaProtocol;
+import com.ti.TildaProtocol;
 
 /**
  * Created by Aleksey on 13.03.2017.

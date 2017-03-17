@@ -1,11 +1,10 @@
-package com.ti.impl.command;
+package com.ti.command;
 
-import com.ti.command.AbstractCommand;
-import com.ti.CheckByHeadByte;
+import com.ti.CommandTypable;
 
 import java.nio.ByteBuffer;
 
-public class DataCommand<COMMAND_TYPE extends CheckByHeadByte> extends AbstractCommand<COMMAND_TYPE> {
+public class DataCommand<COMMAND_TYPE extends CommandTypable> extends AbstractCommand<COMMAND_TYPE> {
     private int reo = 0;
     private int mio = 0;
 

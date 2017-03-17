@@ -1,7 +1,7 @@
 package com.ti.protocol;
 
 import com.ti.command.AbstractCommand;
-import com.ti.CheckByHeadByte;
+import com.ti.CommandTypable;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CheckByHeadByte> extends AbstractProtocol<AbstractCommand, AbstractCommand> {
-    Set<COMMAND_TYPE> commandable = new HashSet<>();
+public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CommandTypable> extends AbstractProtocol<AbstractCommand, AbstractCommand> {
+    private Set<COMMAND_TYPE> commandable = new HashSet<>();
 
     protected void fillSetOfCommandType(COMMAND_TYPE[] arrayOfCommanType){
         commandable.addAll(Arrays.asList(arrayOfCommanType));
     }
 
-    protected abstract void supportCommand(AbstractCommand command);
+//    protected abstract void supportCommand(AbstractCommand command);
 
     @Override
     public ByteBuffer createResponseToByte(AbstractCommand command) {
@@ -30,7 +30,6 @@ public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CheckByHeadBy
         byte head = buffer.get();
         // TODO: 17.03.2017 Можно сделать разделение по командам IN и OUT 
         List<COMMAND_TYPE> list = commandable.stream().filter(x->x.check(head)).collect(Collectors.toList());
-        AbstractCommand command = list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
-        return command;
+        return list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
     }
 }

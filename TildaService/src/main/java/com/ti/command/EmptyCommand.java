@@ -1,11 +1,10 @@
-package com.ti.impl.command;
+package com.ti.command;
 
-import com.ti.command.AbstractCommand;
-import com.ti.CheckByHeadByte;
+import com.ti.CommandTypable;
 
 import java.nio.ByteBuffer;
 
-public class EmptyCommand<COMMAND_TYPE extends CheckByHeadByte> extends AbstractCommand<COMMAND_TYPE> {
+public class EmptyCommand<COMMAND_TYPE extends CommandTypable> extends AbstractCommand<COMMAND_TYPE> {
 
 
     public EmptyCommand(COMMAND_TYPE commandType) {

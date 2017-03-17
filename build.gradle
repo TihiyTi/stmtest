@@ -32,6 +32,9 @@ project(':SerialService'){
 }
 project(':TildaService'){
     version = '0.1'
+    dependencies{
+        compile project(':SerialService')
+    }
 }
 project(':AnalogTester'){
     apply plugin: 'application'
@@ -41,6 +44,7 @@ project(':AnalogTester'){
     def  service = rootProject.childProjects.get('SerialService').version
     dependencies{
         compile project(':SerialService')
+        compile project(':TildaService')
     }
     jar.manifest {
         attributes 'Created-By': 'Ti'

@@ -1,4 +1,4 @@
-package com.ti.impl.command;
+package com.ti.command.param;
 
 public enum Form implements ParamEnum{
     FORM_1((byte)0x01), FORM_2((byte)0x02), FORM_3((byte)0x03), FORM_4((byte)0x04);

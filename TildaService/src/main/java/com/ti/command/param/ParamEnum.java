@@ -1,4 +1,4 @@
-package com.ti.impl.command;
+package com.ti.command.param;
 
 public interface ParamEnum {
 

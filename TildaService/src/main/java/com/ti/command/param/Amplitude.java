@@ -1,4 +1,4 @@
-package com.ti.impl.command;
+package com.ti.command.param;
 
 public enum Amplitude implements ParamEnum{
     AMPLITUDE_20((byte)(0xFF/5)), AMPLITUDE_40((byte)(0xFF/5*2)),

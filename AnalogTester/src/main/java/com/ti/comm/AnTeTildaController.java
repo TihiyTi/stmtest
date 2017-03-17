@@ -2,9 +2,9 @@ package com.ti.comm;
 
 import com.ti.command.AbstractCommand;
 import com.ti.AnalogSignalManager;
-import com.ti.impl.command.DataCommand;
-import com.ti.impl.TildaCommandTypes;
-import com.ti.impl.TildaController;
+import com.ti.command.DataCommand;
+import com.ti.TildaCommandTypes;
+import com.ti.TildaController;
 
 public class AnTeTildaController extends TildaController{
     AnalogSignalManager manager;

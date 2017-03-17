@@ -1,14 +1,14 @@
-package com.ti.impl;
+package com.ti;
 
 import com.ti.command.AbstractCommand;
-import com.ti.CheckByHeadByte;
-import com.ti.impl.command.*;
+import com.ti.command.*;
+import com.ti.command.param.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum TildaCommandTypes implements CheckByHeadByte {
+public enum TildaCommandTypes implements CommandTypable {
     OK((byte)0x00, Direction.REQUEST),
     NO((byte)0x01, Direction.REQUEST),
     DATA((byte)0x02, Direction.REQUEST){
@@ -18,13 +18,22 @@ public enum TildaCommandTypes implements CheckByHeadByte {
         }
     },
     STATE((byte)0x03, Direction.REQUEST),
-    MAX_INDEX((byte)0x04, Direction.REQUEST),
-    MIN_INDEX((byte)0x05, Direction.REQUEST),
-
+    MAX_INDEX((byte)0x04, Direction.REQUEST){
+        @Override
+        public AbstractCommand getCommand(){
+            return new IndexCommand<>(this);
+        }
+    },
+    MIN_INDEX((byte)0x05, Direction.REQUEST){
+        @Override
+        public AbstractCommand getCommand(){
+            return new IndexCommand<>(this);
+        }
+    },
     WAIT_SYNC((byte)0x00, Direction.RESPONSE),
     FREQ_SET((byte)0x01, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this);}
+        public SetParamCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this);}
     },
     FORM_SET((byte)0x02, Direction.RESPONSE){
         @Override
@@ -48,6 +57,10 @@ public enum TildaCommandTypes implements CheckByHeadByte {
     public AbstractCommand getCommand(){
         return new EmptyCommand<>(this);
     }
+    @Override
+    public boolean equalCommand(AbstractCommand command){
+        return command.is() == this;
+    }
 
     @Override
     public boolean check(byte syncByte){
@@ -60,10 +73,6 @@ public enum TildaCommandTypes implements CheckByHeadByte {
     @Override
     public int getCommandSize(){
         return 8;
-    }
-    @Override
-    public boolean equalCommand(AbstractCommand command){
-        return command.is() == this;
     }
 
     public Map<Byte,Integer> getCommandSizeMap(){

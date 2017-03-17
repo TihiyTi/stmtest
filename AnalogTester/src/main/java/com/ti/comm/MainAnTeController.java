@@ -3,8 +3,8 @@ package com.ti.comm;
 import com.ti.command.AbstractCommand;
 import com.ti.AnalogSignalManager;
 import com.ti.SerialService;
-import com.ti.impl.TildaController;
-import com.ti.impl.TildaProtocol;
+import com.ti.TildaController;
+import com.ti.TildaProtocol;
 import com.ti.view.AnTeViewController;
 
 import java.util.concurrent.*;

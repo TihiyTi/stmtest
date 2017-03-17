@@ -1,4 +1,4 @@
-package com.ti.impl.command;
+package com.ti.command.param;
 
 public enum Frequency implements ParamEnum{
     HZ_0_8((byte)0x01), HZ_1((byte)0x02), HZ_2_5((byte)0x03), HZ_12((byte)0x04);

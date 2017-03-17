@@ -1,9 +1,19 @@
 package com.ti;
 
-public interface CommandTypable<RESPONSE_REQUEST, COMMAND_TYPE> {
+import com.ti.command.AbstractCommand;
 
-    RESPONSE_REQUEST getCommand();
-    RESPONSE_REQUEST getCommand(byte head);
-    boolean thisCommand(byte syncByte);
-    COMMAND_TYPE[] getValues();
+import java.util.Map;
+
+public interface CommandTypable {
+    // TODO: 13.03.2017 make abstract class and move same method to abstract class
+    enum Direction{
+        RESPONSE,REQUEST;
+    }
+
+    boolean check(byte head);
+    byte getHeadByte();
+    int getCommandSize();
+    Map<Byte, Integer> getCommandSizeMap();
+    AbstractCommand getCommand();
+    boolean equalCommand(AbstractCommand command);
 }

@@ -1,4 +1,4 @@
-package com.ti.impl.command;
+package com.ti.command.param;
 
 public enum State  implements ParamEnum{
     ENABLE((byte)0x01), DISABLE((byte)0x02);

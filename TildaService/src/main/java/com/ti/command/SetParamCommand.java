@@ -1,11 +1,11 @@
-package com.ti.impl.command;
+package com.ti.command;
 
-import com.ti.command.AbstractCommand;
-import com.ti.CheckByHeadByte;
+import com.ti.CommandTypable;
+import com.ti.command.param.ParamEnum;
 
 import java.nio.ByteBuffer;
 
-public class SetParamCommand<COMMAND_TYPE extends CheckByHeadByte, PARAM extends ParamEnum> extends AbstractCommand<COMMAND_TYPE>{
+public class SetParamCommand<COMMAND_TYPE extends CommandTypable, PARAM extends ParamEnum> extends AbstractCommand<COMMAND_TYPE>{
 
     private PARAM param;
 

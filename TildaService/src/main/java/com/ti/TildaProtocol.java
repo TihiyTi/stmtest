@@ -1,11 +1,11 @@
-package com.ti.impl;
+package com.ti;
 
 import com.ti.command.AbstractCommand;
 import com.ti.protocol.AbstractCommandProtocol;
-import com.ti.impl.command.DataCommand;
-import com.ti.impl.command.EmptyCommand;
-import com.ti.impl.command.ParamEnum;
-import com.ti.impl.command.SetParamCommand;
+import com.ti.command.DataCommand;
+import com.ti.command.EmptyCommand;
+import com.ti.command.param.ParamEnum;
+import com.ti.command.SetParamCommand;
 
 public class TildaProtocol extends AbstractCommandProtocol<TildaCommandTypes>{
 
@@ -16,26 +16,17 @@ public class TildaProtocol extends AbstractCommandProtocol<TildaCommandTypes>{
     }
 
     //Debug Command
+    @Deprecated
     public static AbstractCommand sendDataCommand(int reo, int mio){
         return new DataCommand<>(TildaCommandTypes.DATA, reo, mio);
     }
-
-
-    public static AbstractCommand createCommand(TildaCommandTypes type){
+    @Deprecated
+    public static EmptyCommand<TildaCommandTypes> createCommand(TildaCommandTypes type){
         return new EmptyCommand<>(type);
     }
+    @Deprecated
     public static AbstractCommand sendParam(TildaCommandTypes type, ParamEnum value){
         return new SetParamCommand<>(type, value);
     }
-
-
-    @Override
-    protected void supportCommand(AbstractCommand command) {
-
-    }
-
-//    public TildaProtocol() {
-//        fillSetOfCommandType(TildaCommandTypes.values());
-//    }
 
 }

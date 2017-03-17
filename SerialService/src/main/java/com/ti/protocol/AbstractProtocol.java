@@ -13,7 +13,7 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
     private List<Protocol<RESPONSE, REQUEST>> protocolList = new ArrayList<>(Collections.singletonList(this));
 
     private ComPortWorker sender;
-    protected List<SerialControllable<RESPONSE, REQUEST>> serialControllableList = new ArrayList<>();
+    List<SerialControllable<RESPONSE, REQUEST>> serialControllableList = new ArrayList<>();
 
     // todo странная зависимость
     public void setCommandMap(Map<Byte,Integer> map) {
