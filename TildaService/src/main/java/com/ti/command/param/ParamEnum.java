@@ -1,6 +1,9 @@
 package com.ti.command.param;
 
-public interface ParamEnum {
+import java.util.stream.Stream;
+
+public interface ParamEnum<ENUMABLE> {
 
     byte getIdByte();
+//    Stream<ENUMABLE> getValues();
 }

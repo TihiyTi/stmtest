@@ -6,18 +6,18 @@ import com.ti.command.param.Frequency;
 import com.ti.command.param.State;
 
 public interface TildaInterface {
-    void setMainController(TildaInterface controller);
+    default void setMainController(TildaInterface controller){};
 
     //Requests
-    void syncOk();
-    void no();
-    void processData(int reo, int mio);
-    void processState();
+    default void syncOk(){};
+    default void no(){};
+    default void processData(int reo, int mio) {}
+    default void processState(){};
 
     //Service Response
-    void waitSync();
-    void setFrequency(Frequency frequency);
-    void setForm(Form form);
-    void setAmplitude(Amplitude amplitude);
-    void setState(State state);
+    default void waitSync(){};
+    default void setFrequency(Frequency frequency){};
+    default void setForm(Form form){};
+    default void setAmplitude(Amplitude amplitude){};
+    default void setState(State state){};
 }

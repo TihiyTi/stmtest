@@ -34,6 +34,12 @@ public class DataCommand<COMMAND_TYPE extends CommandTypable> extends AbstractCo
         return buffer;
     }
 
+    @Override
+    public void debugPrint(){
+        System.out.println();
+        System.out.println("DATA reo: "+ reo + " mio: " + mio);
+    }
+
     public int getReo(){return reo;}
     public int getMio(){return mio;}
 }

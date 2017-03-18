@@ -17,32 +17,23 @@ public class TildaController extends AbstractSerialController implements TildaIn
     public void serviceRequest(AbstractCommand command) {
         if(TildaCommandTypes.OK.equalCommand(command)){
             mainController.syncOk();
-//            System.out.println("Ok");
+            System.out.println("Ok");
         }if(TildaCommandTypes.NO.equalCommand(command)){
             mainController.no();
-//            System.out.println("NO");
+            System.out.println("NO");
         }if(TildaCommandTypes.DATA.equalCommand(command)){
             int reo = ((DataCommand)command).getReo();
             int mio = ((DataCommand)command).getMio();
             mainController.processData(reo,mio);
-//            System.out.println("DATA reo: "+ reo + " mio: " + mio);
+            System.out.println("DATA reo: "+ reo + " mio: " + mio);
+        }else{
+            command.debugPrint();
         }
-
     }
     @Override
     public void setMainController(TildaInterface controller){
         mainController = controller;
     }
-
-    @Override
-    public void syncOk() {}
-    @Override
-    public void no() {}
-    @Override
-    public void processData(int reo, int mio) {}
-    @Override
-    public void processState() {}
-
 
     @Override
     public void waitSync() {

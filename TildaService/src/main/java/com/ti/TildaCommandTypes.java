@@ -7,6 +7,7 @@ import com.ti.command.param.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public enum TildaCommandTypes implements CommandTypable {
     OK((byte)0x00, Direction.REQUEST),
@@ -33,19 +34,19 @@ public enum TildaCommandTypes implements CommandTypable {
     WAIT_SYNC((byte)0x00, Direction.RESPONSE),
     FREQ_SET((byte)0x01, Direction.RESPONSE){
         @Override
-        public SetParamCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this);}
+        public SetParamCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this, Stream.of(Frequency.values()));}
     },
     FORM_SET((byte)0x02, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Form>(this);}
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Form>(this,Stream.of(Form.values()));}
     },
     AMPL_SET((byte)0x03, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Amplitude>(this);}
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Amplitude>(this, Stream.of(Amplitude.values()));}
     },
     STATE_SET((byte)0x04, Direction.RESPONSE){
         @Override
-        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,State>(this);}
+        public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,State>(this,Stream.of(State.values()));}
     };
 
     byte syncByte;

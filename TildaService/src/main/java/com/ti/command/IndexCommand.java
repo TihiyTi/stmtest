@@ -1,4 +1,4 @@
-package com.ti.command.param;
+package com.ti.command;
 
 import com.ti.CommandTypable;
 import com.ti.command.AbstractCommand;
@@ -33,4 +33,8 @@ public class IndexCommand<COMMAND_TYPE extends CommandTypable>  extends Abstract
 
     public int getIndex(){return index;}
 
+    @Override
+    public void debugPrint() {
+        System.out.println(type.toString() + " "+ index);
+    }
 }

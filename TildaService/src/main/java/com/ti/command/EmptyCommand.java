@@ -24,4 +24,9 @@ public class EmptyCommand<COMMAND_TYPE extends CommandTypable> extends AbstractC
                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00});
     }
+
+    @Override
+    public void debugPrint() {
+        System.out.println(type.toString());
+    }
 }

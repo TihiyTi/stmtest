@@ -4,17 +4,23 @@ import com.ti.CommandTypable;
 import com.ti.command.param.ParamEnum;
 
 import java.nio.ByteBuffer;
+import java.util.stream.Stream;
 
 public class SetParamCommand<COMMAND_TYPE extends CommandTypable, PARAM extends ParamEnum> extends AbstractCommand<COMMAND_TYPE>{
 
+    private Stream<PARAM> paramStream;
     private PARAM param;
 
-    public SetParamCommand(COMMAND_TYPE commandType) {
-        type = commandType;
-    }
+//    public SetParamCommand(COMMAND_TYPE commandType) {
+//        type = commandType;
+//    }
     public SetParamCommand(COMMAND_TYPE type, PARAM param) {
         this.type = type;
         this.param = param;
+    }
+    public SetParamCommand(COMMAND_TYPE type, Stream<PARAM> paramStream) {
+        this.type = type;
+        this.paramStream = paramStream;
     }
     public void setParam(PARAM param){this.param = param;}
 
@@ -29,7 +35,13 @@ public class SetParamCommand<COMMAND_TYPE extends CommandTypable, PARAM extends 
 
     @Override
     public AbstractCommand parseByteBuffer(ByteBuffer buffer) {
-        System.out.println("Unsupported in RESPONSE command! If call, please check SerialService implementation");
-        return null;
+        byte idByte = buffer.get();
+        param = paramStream.filter(x->x.getIdByte()==idByte).findFirst().get();
+        return this;
+    }
+
+    @Override
+    public void debugPrint() {
+        System.out.println(type.toString() + " "+ param.toString());
     }
 }
