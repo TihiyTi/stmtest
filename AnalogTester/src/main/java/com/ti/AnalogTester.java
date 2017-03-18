@@ -1,7 +1,8 @@
 package com.ti;
 
-import com.ti.comm.MainAnTeController;
-import com.ti.view.AnTeViewController;
+import com.ti.command.AbstractCommand;
+import com.ti.deprecated.MainAnTeController;
+import com.ti.control.AnTeViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ import javafx.stage.Stage;
 
 public class AnalogTester extends Application{
     private  static  final  String SCENE_XML = "analogTester.fxml";
-    private  static  final  String CONTROL_XML = "ControlPanel.fxml";
+//    private  static  final  String CONTROL_XML = "ControlPanel.fxml";
 
     public static void main(String[] args) {
         launch();
@@ -19,19 +20,30 @@ public class AnalogTester extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCENE_XML));
-//        FXMLLoader loader2 = new FXMLLoader(this.getClass().getResource(CONTROL_XML));
         BorderPane root =  loader.load();
-//        root.setBottom(loader2.load());
         Scene scene = new Scene(root,600,600);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
         AnTeViewController viewController = loader.getController();
-        MainAnTeController mainController = new MainAnTeController();
-        mainController.setViewController(viewController);
-        viewController.setControllable(mainController);
-        mainController.runEmulation();
+
+
+        TildaController tildaController = new TildaController();
+        TildaProtocol tildaProtocol = new TildaProtocol();
+        SerialService<AbstractCommand,AbstractCommand> service = new SerialService<>();
+
+        service.setProtocol(tildaProtocol);
+        service.addController(tildaController);
+
+
+
+
+        TildaLogic logic = new TildaLogic(tildaController, viewController.getTildaInterfaces());
+
+
+//        MainAnTeController mainController = new MainAnTeController();
+//        mainController.setViewController(viewController);
+//        viewController.setControllable(mainController);
+//        mainController.runEmulation();
 
     }
     @Override

@@ -1,25 +1,24 @@
-package com.ti;
+package com.ti.control;
+
+import com.ti.TildaInterface;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class AnalogSignalManager {
+public class AnalogSignalManager implements TildaInterface {
     private ConcurrentLinkedQueue<Number> reoQueue = new ConcurrentLinkedQueue<Number>();
     private ConcurrentLinkedQueue<Number> mioQueue = new ConcurrentLinkedQueue<Number>();
-
-
 
     public ConcurrentLinkedQueue<Number> getReoQueue() {
         return reoQueue;
     }
-
     public ConcurrentLinkedQueue<Number> getMioQueue() {
         return mioQueue;
     }
 
-    public void addToReo(int reoSample){
-        reoQueue.add(reoSample);
+    @Override
+    public void processData(int reo,int mio){
+        reoQueue.add(reo);
+        mioQueue.add(mio);
     }
-    public void addToMio(int mioSample){
-        mioQueue.add(mioSample);
-    }
+
 }

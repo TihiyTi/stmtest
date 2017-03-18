@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="border" prefHeight="202.0" prefWidth="273.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ti.view.AnTeViewController">
+<BorderPane fx:id="border" prefHeight="202.0" prefWidth="273.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ti.control.AnTeViewController">
   <center>
     <VBox fx:id="chartHBox" />
   </center>
@@ -22,6 +22,6 @@
     </VBox>
   </left>
   <bottom>
-    <fx:include fx:id="chartmc1" source="ControlPanel.fxml"/>
+    <fx:include fx:id="controlPanel"  source="ControlPanel.fxml"/>
   </bottom>
 </BorderPane>
