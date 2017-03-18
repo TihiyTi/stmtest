@@ -30,6 +30,7 @@ public abstract class AbstractCommandProtocol<COMMAND_TYPE extends CommandTypabl
         byte head = buffer.get();
         // TODO: 17.03.2017 Можно сделать разделение по командам IN и OUT 
         List<COMMAND_TYPE> list = commandable.stream().filter(x->x.check(head)).collect(Collectors.toList());
+        System.out.println(list.toString());
         return list.stream().findFirst().get().getCommand().parseByteBuffer(buffer);
     }
 }

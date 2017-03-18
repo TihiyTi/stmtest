@@ -1,8 +1,9 @@
 package com.ti;
 
+import com.ti.comm.AnTeEmulController;
 import com.ti.command.AbstractCommand;
-import com.ti.deprecated.MainAnTeController;
 import com.ti.control.AnTeViewController;
+import com.ti.logic.TildaLogic;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,24 +27,19 @@ public class AnalogTester extends Application{
         primaryStage.show();
         AnTeViewController viewController = loader.getController();
 
-
         TildaController tildaController = new TildaController();
+        AnTeEmulController emulController = new AnTeEmulController();
         TildaProtocol tildaProtocol = new TildaProtocol();
         SerialService<AbstractCommand,AbstractCommand> service = new SerialService<>();
 
         service.setProtocol(tildaProtocol);
         service.addController(tildaController);
+        service.addController(emulController);
 
+        TildaLogic logic = new TildaLogic(tildaController, viewController.getTildaInterfaces(), viewController.getControlPanelController());
 
-
-
-        TildaLogic logic = new TildaLogic(tildaController, viewController.getTildaInterfaces());
-
-
-//        MainAnTeController mainController = new MainAnTeController();
-//        mainController.setViewController(viewController);
-//        viewController.setControllable(mainController);
-//        mainController.runEmulation();
+//        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+//        executor.scheduleWithFixedDelay(emulController, 0L, 1L, TimeUnit.MILLISECONDS);
 
     }
     @Override

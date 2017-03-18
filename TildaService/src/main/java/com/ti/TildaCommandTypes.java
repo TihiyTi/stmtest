@@ -31,20 +31,20 @@ public enum TildaCommandTypes implements CommandTypable {
             return new IndexCommand<>(this);
         }
     },
-    WAIT_SYNC((byte)0x00, Direction.RESPONSE),
-    FREQ_SET((byte)0x01, Direction.RESPONSE){
+    WAIT_SYNC((byte)0x10, Direction.RESPONSE),
+    FREQ_SET((byte)0x11, Direction.RESPONSE){
         @Override
         public SetParamCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Frequency>(this, Stream.of(Frequency.values()));}
     },
-    FORM_SET((byte)0x02, Direction.RESPONSE){
+    FORM_SET((byte)0x12, Direction.RESPONSE){
         @Override
         public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Form>(this,Stream.of(Form.values()));}
     },
-    AMPL_SET((byte)0x03, Direction.RESPONSE){
+    AMPL_SET((byte)0x13, Direction.RESPONSE){
         @Override
         public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,Amplitude>(this, Stream.of(Amplitude.values()));}
     },
-    STATE_SET((byte)0x04, Direction.RESPONSE){
+    STATE_SET((byte)0x14, Direction.RESPONSE){
         @Override
         public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,State>(this,Stream.of(State.values()));}
     };

@@ -18,10 +18,10 @@ public class TildaController extends AbstractSerialController implements TildaIn
         if(TildaCommandTypes.OK.equalCommand(command)){
             mainController.syncOk();
             System.out.println("Ok");
-        }if(TildaCommandTypes.NO.equalCommand(command)){
+        }else if(TildaCommandTypes.NO.equalCommand(command)){
             mainController.no();
             System.out.println("NO");
-        }if(TildaCommandTypes.DATA.equalCommand(command)){
+        }else if(TildaCommandTypes.DATA.equalCommand(command)){
             int reo = ((DataCommand)command).getReo();
             int mio = ((DataCommand)command).getMio();
             mainController.processData(reo,mio);

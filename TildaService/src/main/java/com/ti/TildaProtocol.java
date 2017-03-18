@@ -24,9 +24,4 @@ public class TildaProtocol extends AbstractCommandProtocol<TildaCommandTypes>{
     public static EmptyCommand<TildaCommandTypes> createCommand(TildaCommandTypes type){
         return new EmptyCommand<>(type);
     }
-    @Deprecated
-    public static AbstractCommand sendParam(TildaCommandTypes type, ParamEnum value){
-        return new SetParamCommand<>(type, value);
-    }
-
 }

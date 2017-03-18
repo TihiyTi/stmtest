@@ -49,6 +49,9 @@ public class AnTeViewController implements Initializable {
     public List<TildaInterface> getTildaInterfaces(){
         return Arrays.asList(controlPanelController,manager);
     }
+    public ViewController getControlPanelController(){
+        return controlPanelController;
+    }
 
     @FXML
     public void changeState() {

@@ -35,7 +35,7 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
         commandSplitter.parseQueue(deque);
     }
     void upByteBuffer(ByteBuffer buffer){
-//        System.out.println("FromUART: " + Arrays.toString(buffer.array()));
+        System.out.println("FromUART: " + Arrays.toString(buffer.array()));
         REQUEST request = protocolList.stream().map(x->x.createByteToRequest(buffer)).filter(x->(x!=null)).findFirst().get();
         serialControllableList.forEach(x->x.serviceRequest(request));
     }
