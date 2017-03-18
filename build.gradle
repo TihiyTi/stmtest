@@ -23,7 +23,7 @@ subprojects{
     }
 }
 project(':SerialService'){
-    version = '0.1'
+    version = '0.2'
     jar.manifest {
         attributes 'Created-By': 'Ti'
 //        attributes 'Main-Class': 'com.ti.AnalogTester'

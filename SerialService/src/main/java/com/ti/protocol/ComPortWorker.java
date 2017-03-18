@@ -16,7 +16,7 @@ public class ComPortWorker {
     private AbstractProtocol protocol;
 
     public ComPortWorker() {
-        openPort("COM5", SerialPort.BAUDRATE_115200);
+        openPort("COM7", SerialPort.BAUDRATE_115200);
     }
 
     public void openPort(String portName, int speed) {
