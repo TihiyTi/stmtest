@@ -34,9 +34,8 @@ public class ViewController implements Initializable, TildaInterface {
         childController.setFrequency(Frequency.HZ_0_8);
     }
     public void freq10action() {childController.setFrequency(Frequency.HZ_1);}
-    public void freq12action() {childController.setFrequency(Frequency.HZ_1);}
-    public void freq25action() {childController.setFrequency(Frequency.HZ_1);}
-    public void freq120action() {childController.setFrequency(Frequency.HZ_1);}
+    public void freq25action() {childController.setFrequency(Frequency.HZ_2_5);}
+    public void freq120action() {childController.setFrequency(Frequency.HZ_12);}
 
     public void ampl25() {childController.setAmplitude(Amplitude.AMPLITUDE_40);}
     public void ampl50(){childController.setAmplitude(Amplitude.AMPLITUDE_60);}

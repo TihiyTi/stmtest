@@ -9,8 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
 
 public class AnalogTester extends Application{
+    public Logger LOG = Logger.getLogger(AnalogTester.class);
     private  static  final  String SCENE_XML = "analogTester.fxml";
 //    private  static  final  String CONTROL_XML = "ControlPanel.fxml";
 
@@ -20,6 +26,13 @@ public class AnalogTester extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        PropertiesService.setGlobalPropertyFileName(AnalogTester.class.getSimpleName());
+        String logLevel = PropertiesService.getGlobalProperty("logLevel", Level.INFO.toString());
+//        String logAppender = PropertiesService.getGlobalProperty("logAppender", "console");
+        LogManager.getRootLogger().setLevel(Level.toLevel(logLevel));
+//        LogManager.getRootLogger().
+        LOG.info("Start application with LOG Level " + logLevel +"  at  " + new Date().toString());
+
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCENE_XML));
         BorderPane root =  loader.load();
         Scene scene = new Scene(root,600,600);

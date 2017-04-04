@@ -17,7 +17,7 @@ subprojects{
         mavenCentral()
     }
     dependencies {
-        //compile group:'log4j',name:'log4j',version:'1.2.17'
+        compile group:'log4j',name:'log4j',version:'1.2.17'
         compile group:'org.scream3r',name:'jssc',version:'2.8.0'
         testCompile group: 'junit', name: 'junit', version: '4.11'
     }
@@ -27,7 +27,13 @@ project(':SerialService'){
     jar.manifest {
         attributes 'Created-By': 'Ti'
 //        attributes 'Main-Class': 'com.ti.AnalogTester'
-        attributes 'Class-Path': 'Ti'
+//        attributes 'Class-Path': 'Ti'
+    }
+    dependencies {
+        compile group:'log4j',name:'log4j',version:'1.2.17'
+        compile group:'org.scream3r',name:'jssc',version:'2.8.0'
+        compile files('../lib/TiUtils-0.0.2.jar')
+        testCompile group: 'junit', name: 'junit', version: '4.11'
     }
 }
 project(':TildaService'){
@@ -40,7 +46,7 @@ project(':AnalogTester'){
     apply plugin: 'application'
     mainClassName = "com.ti.AnalogTester"
 
-    version = '0.2.1'
+    version = '0.2.3'
     def  service = rootProject.childProjects.get('SerialService').version
     dependencies{
         compile project(':SerialService')
@@ -49,6 +55,8 @@ project(':AnalogTester'){
     jar.manifest {
         attributes 'Created-By': 'Ti'
         attributes 'Main-Class': 'com.ti.AnalogTester'
+//        attributes 'Class-Path': 'TiUtils-0.0.1.jar'
+
 //        attributes 'Class-Path': 'SerialService-'+ service +'.jar jssc-2.8.0.jar'
     }
     jar {

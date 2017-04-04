@@ -24,7 +24,6 @@
           </toggleGroup>
         </ToggleButton>
         <ToggleButton onAction="#freq10action" text="Frequency 1" toggleGroup="$freqgroup" />
-        <ToggleButton onAction="#freq12action" text="Frequency 1.2" toggleGroup="$freqgroup" />
         <ToggleButton onAction="#freq25action" text="Frequency 2.5" toggleGroup="$freqgroup" />
         <ToggleButton onAction="#freq120action" text="Frequency 12" toggleGroup="$freqgroup" />
       </HBox>
