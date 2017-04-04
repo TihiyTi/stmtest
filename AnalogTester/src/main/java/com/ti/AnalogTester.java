@@ -49,9 +49,6 @@ public class AnalogTester extends Application{
 
         TildaLogic logic = new TildaLogic(tildaController, viewController.getTildaInterfaces(), viewController.getControlPanelController());
 
-//        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-//        executor.scheduleWithFixedDelay(emulController, 0L, 1L, TimeUnit.MILLISECONDS);
-
     }
     @Override
     public void stop() throws Exception{
