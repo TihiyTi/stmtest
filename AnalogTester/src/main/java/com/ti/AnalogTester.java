@@ -55,5 +55,4 @@ public class AnalogTester extends Application{
         super.stop();
         System.exit(0);
     }
-
 }
