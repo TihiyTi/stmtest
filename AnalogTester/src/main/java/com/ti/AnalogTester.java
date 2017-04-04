@@ -28,9 +28,7 @@ public class AnalogTester extends Application{
     public void start(Stage primaryStage) throws Exception {
         PropertiesService.setGlobalPropertyFileName(AnalogTester.class.getSimpleName());
         String logLevel = PropertiesService.getGlobalProperty("logLevel", Level.INFO.toString());
-//        String logAppender = PropertiesService.getGlobalProperty("logAppender", "console");
         LogManager.getRootLogger().setLevel(Level.toLevel(logLevel));
-//        LogManager.getRootLogger().
         LOG.info("Start application with LOG Level " + logLevel +"  at  " + new Date().toString());
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCENE_XML));
