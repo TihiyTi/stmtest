@@ -7,11 +7,16 @@ import com.ti.command.param.Amplitude;
 import com.ti.command.param.Form;
 import com.ti.command.param.Frequency;
 import com.ti.command.param.State;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
 
 public class TildaController extends AbstractSerialController implements TildaInterface{
+    public static Logger LOG = Logger.getLogger(TildaController.class);
     // TODO: 13.03.2017 судя по всему нет необходимости передавать во все протоколы, так как в методе
     // sendResponse происходит проброс RESPONSE<AbstractCommand> на все протоколы
     private TildaInterface mainController;
+    private long dataCounter = 0;
 
     @Override
     public void serviceRequest(AbstractCommand command) {
@@ -25,7 +30,12 @@ public class TildaController extends AbstractSerialController implements TildaIn
             int reo = ((DataCommand)command).getReo();
             int mio = ((DataCommand)command).getMio();
             mainController.processData(reo,mio);
-            System.out.println("DATA reo: "+ reo + " mio: " + mio);
+            dataCounter++;
+            if(dataCounter%10000 == 0){
+                LOG.info("Data counter " + dataCounter + "  " + new Date().toString());
+            }
+            LOG.trace("DATA reo: "+ reo + " mio: " + mio);
+//            System.out.println("DATA reo: "+ reo + " mio: " + mio);
         }else{
             command.debugPrint();
         }

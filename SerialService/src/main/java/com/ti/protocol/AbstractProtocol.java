@@ -1,12 +1,14 @@
 package com.ti.protocol;
 
 import com.ti.SerialControllable;
+import org.apache.log4j.Logger;
 
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RESPONSE, REQUEST>{
+    public static Logger LOG = Logger.getLogger(AbstractProtocol.class);
     private ProtocolCheckable protocolChecker = new OneSynchroByteProtocolChecker();
     private CommandSplittable commandSplitter = new CommandSplitter(this);
 
@@ -35,7 +37,8 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
         commandSplitter.parseQueue(deque);
     }
     void upByteBuffer(ByteBuffer buffer){
-        System.out.println("FromUART: " + Arrays.toString(buffer.array()));
+        LOG.trace("FromUART: " + Arrays.toString(buffer.array()));
+//        System.out.println("FromUART: " + Arrays.toString(buffer.array()));
         REQUEST request = protocolList.stream().map(x->x.createByteToRequest(buffer)).filter(x->(x!=null)).findFirst().get();
         serialControllableList.forEach(x->x.serviceRequest(request));
     }
@@ -47,7 +50,7 @@ public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RE
     @Override
     public void sendResponse(RESPONSE response){
         ByteBuffer buffer = protocolList.stream().map(x->x.createResponseToByte(response)).filter(x->(x!=null)).findFirst().get();
-//        System.out.println("ToUART: "+Arrays.toString(buffer.array()));
+        LOG.trace("ToUART: "+Arrays.toString(buffer.array()));
         sender.sendDataArray(buffer);
     }
 }

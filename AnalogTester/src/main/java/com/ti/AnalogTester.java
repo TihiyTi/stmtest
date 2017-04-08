@@ -3,6 +3,7 @@ package com.ti;
 import com.ti.comm.AnTeEmulController;
 import com.ti.command.AbstractCommand;
 import com.ti.control.AnTeViewController;
+import com.ti.logic.SyncKeeper;
 import com.ti.logic.TildaLogic;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class AnalogTester extends Application{
     public Logger LOG = Logger.getLogger(AnalogTester.class);
@@ -49,6 +52,10 @@ public class AnalogTester extends Application{
 
         TildaLogic logic = new TildaLogic(tildaController, viewController.getTildaInterfaces(), viewController.getControlPanelController());
 
+        if(Boolean.valueOf(PropertiesService.getGlobalProperty("isEmulate"))){
+            Executors.newSingleThreadScheduledExecutor().
+                    scheduleWithFixedDelay(emulController, 0L, 1L, TimeUnit.MICROSECONDS);
+        }
     }
     @Override
     public void stop() throws Exception{
