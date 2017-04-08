@@ -18,8 +18,8 @@
     </appender>
 
     <root>
-        <priority value ="debug" />
-        <appender-ref ref="console" />
+        <priority value ="info" />
+        <!--<appender-ref ref="console" />-->
         <appender-ref ref="toFile" />
     </root>
 </log4j:configuration>
