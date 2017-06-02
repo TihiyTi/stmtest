@@ -48,7 +48,7 @@ project(':AnalogTester'){
     apply plugin: 'application'
     mainClassName = "com.ti.AnalogTester"
 
-    version = '0.2.4b'
+    version = '0.2.5'
     def  service = rootProject.childProjects.get('SerialService').version
     dependencies{
         compile project(':SerialService')
