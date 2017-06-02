@@ -10,16 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class AnalogTester extends Application{
-    public Logger LOG = Logger.getLogger(AnalogTester.class);
+    private static final Logger LOG = LogManager.getLogger(AnalogTester.class);
     private  static  final  String SCENE_XML = "analogTester.fxml";
 //    private  static  final  String CONTROL_XML = "ControlPanel.fxml";
 
@@ -29,10 +29,14 @@ public class AnalogTester extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("Start");
         PropertiesService.setGlobalPropertyFileName(AnalogTester.class.getSimpleName());
-        String logLevel = PropertiesService.getGlobalProperty("logLevel", Level.INFO.toString());
-        LogManager.getRootLogger().setLevel(Level.toLevel(logLevel));
-        LOG.info("Start application with LOG Level " + logLevel +"  at  " + new Date().toString());
+        System.out.println("Start");
+//        String logLevel = PropertiesService.getGlobalProperty("logLevel", Level.INFO.toString());
+        System.out.println("Start");
+        // TODO: 02.06.2017 вернуть функционал выбора уровня из файла свойств
+//        LogManager.getRootLogger().setLevel(Level.toLevel(logLevel));
+//        LOG.info("Start application with LOG Level " + logLevel +"  at  " + new Date().toString());
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCENE_XML));
         BorderPane root =  loader.load();

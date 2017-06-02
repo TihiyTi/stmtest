@@ -7,12 +7,13 @@ import com.ti.command.param.Amplitude;
 import com.ti.command.param.Form;
 import com.ti.command.param.Frequency;
 import com.ti.command.param.State;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 
 public class TildaController extends AbstractSerialController implements TildaInterface{
-    public static Logger LOG = Logger.getLogger(TildaController.class);
+    private static final Logger LOG = LogManager.getLogger(TildaController.class);
     // TODO: 13.03.2017 судя по всему нет необходимости передавать во все протоколы, так как в методе
     // sendResponse происходит проброс RESPONSE<AbstractCommand> на все протоколы
     private TildaInterface mainController;

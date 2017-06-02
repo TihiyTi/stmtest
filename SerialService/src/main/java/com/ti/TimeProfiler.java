@@ -1,12 +1,13 @@
 package com.ti;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 
 public class TimeProfiler {
     private String name;
-    private static Logger LOG = Logger.getLogger("Profile");
+    private static final Logger LOG = LogManager.getLogger("Profile");
 
     private long previous = new Date().getTime();
 

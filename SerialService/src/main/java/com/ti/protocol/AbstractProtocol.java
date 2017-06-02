@@ -1,14 +1,16 @@
 package com.ti.protocol;
 
 import com.ti.SerialControllable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public abstract class AbstractProtocol<RESPONSE, REQUEST> implements Protocol<RESPONSE, REQUEST>{
-    public static Logger LOG = Logger.getLogger(AbstractProtocol.class);
+    private static final Logger LOG = LogManager.getLogger(AbstractProtocol.class);
     private ProtocolCheckable protocolChecker = new OneSynchroByteProtocolChecker();
     private CommandSplittable commandSplitter = new CommandSplitter(this);
 

@@ -5,13 +5,14 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class ComPortWorker {
-    Logger LOG = Logger.getLogger(ComPortWorker.class.getName());
+    private static final Logger LOG = LogManager.getLogger(ComPortWorker.class.getName());
 
     private static String PORT_NAME = "portName";
     private static String BAUD_RATE = "baudRate";
