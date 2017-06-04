@@ -11,12 +11,14 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class StmTest extends Application{
-    public static final Logger LOG = Logger.getLogger(StmTest.class);
+    private static final Logger LOG = LogManager.getLogger(StmTest.class);
     private static final String SCENE_XML = "scene.fxml";
 
     public static void main(String[] args) {

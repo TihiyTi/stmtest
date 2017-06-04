@@ -50,6 +50,6 @@ public class AnalogSignalManager implements TildaInterface {
         reoQueue.add(reoReranger.rerange(reo));
         mioQueue.add(mioReranger.rerange(mio));
 //        LOG.info((new Date().getTime() - time)/1000.+" "+reo+" "+ mio);
-        LOG.info((time++)/1000.+" "+reo+" "+ mio);
+        LOG.trace((time++)/1000.+" "+reo+" "+ mio);
     }
 }

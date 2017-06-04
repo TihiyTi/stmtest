@@ -29,7 +29,7 @@
             <AppenderRef ref="FileData"/>
         </Logger>
         <Root level="trace">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileEvent"/>
         </Root>
     </Loggers>
