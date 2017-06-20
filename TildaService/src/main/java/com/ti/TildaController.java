@@ -2,6 +2,7 @@ package com.ti;
 
 import com.ti.command.AbstractCommand;
 import com.ti.command.DataCommand;
+import com.ti.command.NakeDataCommand;
 import com.ti.command.SetParamCommand;
 import com.ti.command.param.Amplitude;
 import com.ti.command.param.Form;
@@ -10,10 +11,12 @@ import com.ti.command.param.State;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class TildaController extends AbstractSerialController implements TildaInterface{
     private static final Logger LOG = LogManager.getLogger(TildaController.class);
+    private static final Logger NAKELOG = LogManager.getLogger();
     // TODO: 13.03.2017 судя по всему нет необходимости передавать во все протоколы, так как в методе
     // sendResponse происходит проброс RESPONSE<AbstractCommand> на все протоколы
     private TildaInterface mainController;
@@ -37,7 +40,7 @@ public class TildaController extends AbstractSerialController implements TildaIn
             }
             LOG.trace("DATA reo: "+ reo + " mio: " + mio);
 //            System.out.println("DATA reo: "+ reo + " mio: " + mio);
-        }else{
+        }else {
             command.debugPrint();
         }
     }

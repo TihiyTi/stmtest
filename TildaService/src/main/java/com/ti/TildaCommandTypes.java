@@ -47,8 +47,13 @@ public enum TildaCommandTypes implements CommandTypable {
     STATE_SET((byte)0x14, Direction.RESPONSE){
         @Override
         public AbstractCommand getCommand(){ return new SetParamCommand<TildaCommandTypes,State>(this,Stream.of(State.values()));}
+    },
+    NAKE_DATA((byte)0xA3, Direction.REQUEST){
+        @Override
+        public AbstractCommand getCommand(){
+            return new NakeDataCommand(this);
+        }
     };
-
     byte syncByte;
 
     TildaCommandTypes(byte syncByte, Direction direction){ this.syncByte = syncByte;}

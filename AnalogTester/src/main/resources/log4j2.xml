@@ -17,6 +17,11 @@
                 <Pattern>%m %n</Pattern>
             </PatternLayout>
         </File>
+        <!--<File name="FileNakeData" append="false" fileName="./log/nakeData.log">-->
+            <!--<PatternLayout>-->
+                <!--<Pattern>%m %n</Pattern>-->
+            <!--</PatternLayout>-->
+        <!--</File>-->
     </Appenders>
 
 
@@ -28,6 +33,9 @@
         <Logger name="reportsLogger" level="trace">
             <AppenderRef ref="FileData"/>
         </Logger>
+        <!--<Logger name="reportsLogger" level="trace">-->
+            <!--<AppenderRef ref="FileNakeData"/>-->
+        <!--</Logger>-->
         <Root level="trace">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileEvent"/>
