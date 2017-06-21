@@ -22,9 +22,9 @@ public class RealTimeChart{
     private int maxDataPoint = 1000;
     private boolean skip10 = true;
 
-    private ConcurrentLinkedQueue<Integer> dataQ = new ConcurrentLinkedQueue<>();
-    private List<Integer> tempList = new ArrayList<>();
-    private ConcurrentLinkedQueue<Integer> dataOfMax = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Double> dataQ = new ConcurrentLinkedQueue<>();
+    private List<Double> tempList = new ArrayList<>();
+    private ConcurrentLinkedQueue<Double> dataOfMax = new ConcurrentLinkedQueue<>();
     private LineChartWithMarkers<Number, Number> sc;
     private NumberAxis xAxis;
     private NumberAxis yAxis;
@@ -78,14 +78,14 @@ public class RealTimeChart{
             if (dataQ.isEmpty()) break;
             xSeriesData = xSeriesData+1;
             if((xSeriesData%10) == 0){
-                int addingValue = dataQ.remove();
+                double addingValue = dataQ.remove();
                 tempList.add(addingValue);
                 series.getData().add(new LineChart.Data(xSeriesData/10, addingValue));
             }else{
                 dataQ.remove();
             }
             while(dataOfMax.size()>0){
-                int maximum = (Integer)dataOfMax.poll();
+                double maximum = dataOfMax.poll();
 //                System.out.println("Add maximum " + maximum);
                 sc.addVerticalValueMarker(new XYChart.Data<>(maximum/10, 0 ));
             }
@@ -109,7 +109,7 @@ public class RealTimeChart{
     private void addDataToSeriesAll() {
         for (int i = 0; i < dataQ.size(); i++) { //-- add 20 numbers to the plot+
             xSeriesData = xSeriesData+1;
-            int addingValue = dataQ.remove();
+            double addingValue = dataQ.remove();
             tempList.add(addingValue);
             if(tempList.size() > maxDataPoint){
                 tempList.remove(0);

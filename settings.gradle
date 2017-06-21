@@ -2,5 +2,6 @@ rootProject.name = 'stmtest'
 include 'SerialService'
 include 'TildaService'
 include 'AnalogTester'
+include 'DspModule'
 
 

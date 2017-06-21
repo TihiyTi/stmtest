@@ -5,8 +5,8 @@ apply plugin: 'idea'
 apply plugin: 'application'
 
 compileJava.options.encoding = 'UTF-8'
-compileJava.options.fork = true
-compileJava.options.forkOptions.executable = "C:/Program Files (x86)/Java/jdk1.8.0_05/bin/javac.exe"
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.executable = "C:/Program Files (x86)/Java/jdk1.8.0_05/bin/javac.exe"
 
 mainClassName = "com.ti.StmTest"
 
@@ -49,15 +49,23 @@ project(':TildaService'){
         compile project(':SerialService')
     }
 }
+project(':DspModule'){
+    version ='0.1'
+    dependencies{
+        compile group:'org.apache.commons',name:'commons-math3',version: '3.6.1'
+        compile group:'com.google.guava',name:'guava',version:'15.0'
+    }
+}
 project(':AnalogTester'){
     apply plugin: 'application'
     mainClassName = "com.ti.AnalogTester"
 
-    version = '0.2.6'
+    version = '0.2.7'
     def  service = rootProject.childProjects.get('SerialService').version
     dependencies{
         compile project(':SerialService')
         compile project(':TildaService')
+        compile project(':DspModule')
     }
     jar.manifest {
         attributes 'Created-By': 'Ti'

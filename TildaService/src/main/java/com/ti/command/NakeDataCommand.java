@@ -15,9 +15,9 @@ public class NakeDataCommand<COMMAND_TYPE extends CommandTypable> extends Abstra
     public AbstractCommand parseByteBuffer(ByteBuffer buffer) {
         for (int i = 0; i < 8; i++) {
             System.out.println();
-            byte b = buffer.get;
-            System.out.println(b);
-            data[i] = b;
+//            byte b = buffer.get;
+//            System.out.println(b);
+//            data[i] = b;
         }
         return this;
     }
