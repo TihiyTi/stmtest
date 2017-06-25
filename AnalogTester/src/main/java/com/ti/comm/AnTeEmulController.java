@@ -6,7 +6,7 @@ import com.ti.TildaProtocol;
 import com.ti.command.DataCommand;
 
 public class AnTeEmulController extends AbstractEmulController {
-    private byte count = 0;
+    private int count = 0;
     @Override
     protected void doIt() {
         count++;

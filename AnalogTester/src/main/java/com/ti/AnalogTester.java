@@ -58,7 +58,7 @@ public class AnalogTester extends Application{
 
         if(Boolean.valueOf(PropertiesService.getGlobalProperty("isEmulate"))){
             Executors.newSingleThreadScheduledExecutor().
-                    scheduleWithFixedDelay(emulController, 0L, 1L, TimeUnit.MILLISECONDS);
+                    scheduleWithFixedDelay(emulController, 0L, 10L, TimeUnit.MILLISECONDS);
         }
     }
     @Override
