@@ -66,12 +66,14 @@ public class AnalogSignalManager implements TildaInterface {
 //        profiler.check(count++, 100);
 
         Number reoF = dspReo.addElement(reo);
-        Number mioF = dspReo.addElement(mio);
+        Number mioF = dspMio.addElement(mio);
 
-//        reoQueue.add(reoF);
-//        mioQueue.add(mioF);
-        reoQueue.add((double)reo);
-        mioQueue.add((double)mio);
+        System.out.println(reo+ "  " + reoF);
+
+        reoQueue.add(reoF);
+        mioQueue.add(mioF);
+//        reoQueue.add((double)reo);
+//        mioQueue.add((double)mio);
 //        LOG.info((new Date().getTime() - time)/1000.+" "+reo+" "+ mio);
         LOG.trace((time++)/1000.+" "+reoF+" "+ mioF);
     }
