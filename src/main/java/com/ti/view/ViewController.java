@@ -10,15 +10,6 @@ import java.util.ResourceBundle;
 public class ViewController implements Initializable {
     ViewInterface viewInterface;
 
-//    public ViewController(ViewInterface interf){
-//        viewInterface = interf;
-//        freq08.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                System.out.println("0.8 Hz");
-//            }
-//        });
-//    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

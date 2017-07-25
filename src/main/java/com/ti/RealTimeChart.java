@@ -40,10 +40,7 @@ public class RealTimeChart{
 
         Line line = new Line();
         Polyline polyline = new Polyline();
-
     }
-
-
 
     private void prepareTimeline() {
         new AnimationTimer(){

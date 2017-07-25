@@ -5,20 +5,77 @@ apply plugin: 'idea'
 apply plugin: 'application'
 
 compileJava.options.encoding = 'UTF-8'
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.executable = "C:/Program Files (x86)/Java/jdk1.8.0_05/bin/javac.exe"
 
 mainClassName = "com.ti.StmTest"
 
 subprojects{
     apply plugin: 'java'
     apply plugin: 'idea'
+//    apply plugin: 'application'
 
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+
+        compile group:'org.apache.logging.log4j',name:'log4j-api',version:'2.8.2'
+        compile group:'org.apache.logging.log4j',name:'log4j-core',version:'2.8.2'
+//        compile group:'log4j',name:'apache-log4j-extras',version:'1.2.17'
+        compile group:'org.scream3r',name:'jssc',version:'2.8.0'
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
 }
 project(':SerialService'){
-    version = '0.1'
+    version = '0.2'
     jar.manifest {
         attributes 'Created-By': 'Ti'
-        attributes 'Class-Path': 'Ti'
+//        attributes 'Main-Class': 'com.ti.AnalogTester'
+//        attributes 'Class-Path': 'Ti'
+    }
+    dependencies {
+        compile group:'org.apache.logging.log4j',name:'log4j-api',version:'2.8.2'
+        compile group:'org.apache.logging.log4j',name:'log4j-core',version:'2.8.2'
+//        compile group:'log4j',name:'log4j',version:'1.2.17'
+        compile group:'org.scream3r',name:'jssc',version:'2.8.0'
+        compile files('../lib/TiUtils-0.0.3.jar')
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
+}
+project(':TildaService'){
+    version = '0.2'
+    dependencies{
+        compile project(':SerialService')
+    }
+}
+project(':DspModule'){
+    version ='0.1'
+    dependencies{
+        compile group:'org.apache.commons',name:'commons-math3',version: '3.6.1'
+        compile group:'com.google.guava',name:'guava',version:'15.0'
+    }
+}
+project(':AnalogTester'){
+    apply plugin: 'application'
+    mainClassName = "com.ti.AnalogTester"
 
+    version = '0.2.7b'
+    def  service = rootProject.childProjects.get('SerialService').version
+    dependencies{
+        compile project(':SerialService')
+        compile project(':TildaService')
+        compile project(':DspModule')
+    }
+    jar.manifest {
+        attributes 'Created-By': 'Ti'
+        attributes 'Main-Class': 'com.ti.AnalogTester'
+//        attributes 'Class-Path': 'TiUtils-0.0.1.jar'
+
+//        attributes 'Class-Path': 'SerialService-'+ service +'.jar jssc-2.8.0.jar'
+    }
+    jar {
+        from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
@@ -27,17 +84,22 @@ repositories {
 }
 
 dependencies {
-    compile group:'log4j',name:'log4j',version:'1.2.17'
+    compile group:'org.apache.logging.log4j',name:'log4j-api',version:'2.8.2'
+    compile group:'org.apache.logging.log4j',name:'log4j-core',version:'2.8.2'
+//    compile group:'log4j',name:'log4j',version:'1.2.17'
     compile group:'org.scream3r',name:'jssc',version:'2.8.0'
     compile group:'com.google.guava',name:'guava',version:'15.0'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
 
-task fatJar(type: Jar){
-    manifest{
-        attributes "Main-Class": mainClassName
-    }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
+//task fatJar(type: Jar){
+////    def  service = rootProject.childProjects.get('SerialService').version
+//    manifest{
+//        attributes "Main-Class": mainClassName
+//        attributes 'Class-Path': 'LocalStorage.jar'
+//    }
+//    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+//    with jar
+//}
+//}
