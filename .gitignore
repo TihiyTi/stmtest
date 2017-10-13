@@ -1,14 +1,18 @@
 
-TildaService/build/
+\.gradle/
+
+\.idea/
 
 AnalogTester/build/
 
 DspModule/build/
 
+SerialService/build/
+
+TildaService/build/
+
 build/
 
-\.gradle/
-
-\.idea/
+out/
 
 log/
